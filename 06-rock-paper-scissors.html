@@ -38,6 +38,16 @@
       margin: 0;
       cursor: pointer;
     }
+    .resetButton{
+      border: 2px solid black;
+      padding: 4px 8px;
+      margin: 10px;
+      height: 30px;
+      position:relative;
+      border: 1 px solid blueviolet;
+      border-radius: 12px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -71,7 +81,7 @@
           wincount++;
         }
   
-        alert(`You picked rock. Computer picked ${computerMove}.${result}`);
+        alert(`You picked rock. Computer picked ${computerMove}. ${result}. \nyour win count ${wincount}\nyour losecount ${losecount}\nyour tiecount ${tiecount}`);
       "><img class="image" src="Icons/rock-emoji.png" alt="">
       </button></div><div>
 
@@ -101,7 +111,7 @@
           losecount++;
         }
 
-        alert(`You picked paper. Computer picked ${computerMove}.${result}`);
+        alert(`You picked paper. Computer picked ${computerMove}. ${result}. \nyour win count ${wincount}\nyour losecount ${losecount}\nyour tiecount ${tiecount}`);
       
       "><img class="image" src="Icons/paper-emoji.png" alt=""></button>
     </div>
@@ -134,20 +144,22 @@
         tiecount++;
       }
 
-      alert(`You picked scissors. Computer picked ${computerMove}.${result}`);
+      alert(`You picked scissors. Computer picked ${computerMove}. ${result}. \nyour win count ${wincount}\nyour losecount ${losecount}\nyour tiecount ${tiecount}`);
       "><img class="image" src="Icons/scissors-emoji.png" alt=""></button>
     </div>
   </div>
-  <p><a href="">Click here</a> to see the final version of the project</p>
-  <p><button onclick="
+  
+  <p><button class="resetButton" onclick="
     losecount= 0;
     tiecount = 0;
     wincount = 0;
+    alert('Game reset');
   ">Reset Score</button></p>
   <script>
     let losecount = 0;
     let wincount = 0;
     let tiecount = 0;
+    // alert('Lets start the rock paper scissors game with me.!!!');
   </script>
 </body>
 </html>
