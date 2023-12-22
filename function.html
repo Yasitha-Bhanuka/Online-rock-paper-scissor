@@ -8,13 +8,22 @@
 <body>
   <script>
 
-    function function1(){
-      console.log('hello');
-      console.log(2 + 2);
+    // function function1(){
+    //   console.log('hello');
+    //   console.log(2 + 2);
+    // }
+
+    // function1();
+
+    function calculateTax(parameter1 , taxparameter = 0.1){
+      console.log(taxparameter);
+      console.log(taxparameter * parameter1) ;
     }
 
-    function1();
-    
+    calculateTax(0.2);
+
+    // calculateTax(5 , 1000);
+
   </script>
 </body>
 </html>
