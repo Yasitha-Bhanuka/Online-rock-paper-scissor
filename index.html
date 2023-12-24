@@ -74,17 +74,19 @@
   </div>
   
   <p><button class="resetButton" onclick="
-    losecount= 0;
-    tiecount = 0;
-    wincount = 0;
+      score.wins = 0;
+      score.losses = 0;
+      score.ties = 0;
+      localStorage.removeItem('score');
     alert('Game reset');
     ">Reset Score</button></p>
   <script>
     
-    let result = '';
-    let losecount = 0;
-    let wincount = 0;
-    let tiecount = 0;
+    let score = JSON.parse(localStorage.getItem('score')) || {
+        wins: 0,
+        losses:  0,
+        ties: 0
+      }; 
 
     function playgame (playmove){
       const computerMove = pickComputerMove();
@@ -92,38 +94,50 @@
         if (playmove === 'rock'){
           if (computerMove === 'rock'){
             result = 'Tie';
-            tiecount++;
+           
           }else if (computerMove === 'paper') {
             result = 'You lose';
-            losecount++;
+            
           } else if (computerMove === 'scissors') {
             result = 'You win';
-            wincount++;
+            
           }
         } else if (playmove === 'paper'){
           if (computerMove === 'rock'){
             result = 'You win';
-            tiecount++;
+           
           }else if (computerMove === 'paper') {
             result = 'Tie';
-            losecount++;
+          
           } else if (computerMove === 'scissors') {
             result = 'You lose';
-            wincount++;
+
           }
         } else if (playmove === 'scissors'){
           if (computerMove === 'rock'){
             result = 'Tie';
-            tiecount++;
+           
           }else if (computerMove === 'paper') {
             result = 'You lose';
-            losecount++;
+           
           } else if (computerMove === 'scissors') {
             result = 'You win';
-            wincount++;
+          
           }
         }
-        alert(`You picked ${playmove}. Computer picked ${computerMove}. ${result}. \nyour win count ${wincount}\nyour losecount ${losecount}\nyour tiecount ${tiecount}`);
+
+
+        if (result === 'You win'){
+          score.wins++;
+        } else if (result === 'You lose'){
+          score.losses++;
+        } else if (result === 'Tie'){
+          score.ties++;
+        }
+
+        localStorage.setItem('score' , JSON.stringify(score));
+
+        alert(`You picked ${playmove}. Computer picked ${computerMove}. ${result}. \nyour win count ${score.wins}\nyour lose count ${score.losses}\nyour tie count ${score.ties}`);
 
     }
 
