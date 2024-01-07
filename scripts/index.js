@@ -7,7 +7,54 @@ let score = JSON.parse(localStorage.getItem('score')) || {
 let plmove = 'none';
 let computerMove = 'none';
 
+document.querySelector('.js-rock-btn').addEventListener('click', 
+  () => playgame('rock'), plmove = 'rock');
+document.querySelector('.js-paper-btn').addEventListener('click', 
+  () => playgame('rock'), plmove = 'paper');
+  document.querySelector('.js-scissors-btn').addEventListener('click', 
+  () => playgame('rock'), plmove = 'scissors');
+  document.querySelector('.resetButton').addEventListener('click', 
+  () => {
+    score.losecount= 0;
+    score.tiecount = 0;
+    score.wincount = 0;
+    alert('Game reset');
+    localStorage.removeItem('score');
+    result = 'lets start!!';
+    computerMove = 'none';
+    plmove = 'none';
+    updateScoreElement();
+  });
+
+  document.querySelector('.autoButton').addEventListener('click', 
+    () => {
+      document.querySelector('.autoButton').innerHTML = 'Stop';
+
+      if(isAutoPlaying){
+        document.querySelector('.autoButton').innerHTML = 'Auto';
+      };
+      
+      autoPlay();
+
+    });
+  
 updateScoreElement();
+
+document.body.addEventListener('keydown', (event) => {
+  if(event.key === 'r'){
+    playgame('rock');
+    plmove = 'rock';
+  }
+  if(event.key === 'p'){
+    playgame('paper');
+    plmove = 'paper';
+  }
+  if(event.key === 's'){
+    playgame('scissors');
+    plmove = 'scissors';
+  }
+});
+
 
 function playgame (playmove){
    computerMove = pickComputerMove();
@@ -92,4 +139,21 @@ function pickComputerMove(){
     }
 
     return computerMove;
+}
+
+let isAutoPlaying = false;
+let intervalID;
+
+function autoPlay(){
+
+  if(!isAutoPlaying){
+    intervalID = setInterval(function(){
+      const playermove = pickComputerMove();
+      playgame(playermove);
+    }, 1000);
+    isAutoPlaying = true;
+  } else {
+    clearInterval(intervalID);
+    isAutoPlaying = false;
+  }
 }

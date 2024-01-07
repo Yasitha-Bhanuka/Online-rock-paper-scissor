@@ -15,23 +15,17 @@
     </div>
     <div class="container">
       <div>
-        <button onclick="
-        playgame('rock');
-        plmove = 'rock';
-        "><img class="image" src="Icons/rock-emoji.png" alt="">
+        <button class="js-rock-btn"
+        ><img class="image" src="Icons/rock-emoji.png" alt="">
         </button></div><div>
 
-        <button onclick="
-        playgame('paper');
-        plmove = 'paper';
-        "><img class="image" src="Icons/paper-emoji.png" alt=""></button>
+        <button class="js-paper-btn"
+        ><img class="image" src="Icons/paper-emoji.png" alt=""></button>
       </div>
 
       <div>
-        <button onclick="
-        playgame('scissors');
-        plmove = 'scissors';
-        "><img class="image" src="Icons/scissors-emoji.png" alt=""></button>
+        <button class="js-scissors-btn"
+        ><img class="image" src="Icons/scissors-emoji.png" alt=""></button>
       </div>
     </div>
     <div class="scorediv">
@@ -44,20 +38,16 @@
       <p class="js-score"></p>
     </div>
     
-    
-    <button class="resetButton" onclick="
-      score.losecount= 0;
-      score.tiecount = 0;
-      score.wincount = 0;
-      alert('Game reset');
-      localStorage.removeItem('score');
-      result = 'lets start!!';
-      computerMove = 'none';
-      plmove = 'none';
-      updateScoreElement();
-      ">Reset Score</button>
-
+    <div>
+      <button class="resetButton"
+        >Reset Score</button>
+        <button class="autoButton">
+          Auto Play
+        </button>
+    </div>
   </div>
+
+
   <script src="scripts/index.js"></script>
 </body>
 </html>
